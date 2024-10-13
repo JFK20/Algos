@@ -39,10 +39,9 @@ func MergeSort(a []int, b []int) []int {
 			fmt.Println(left)
 			fmt.Println(right)
 		}
-		ri := 0
-		li := 0
-		ai := 0
-		for li < len(left) && ri < len(right) {
+		ri, li, ai := 0, 0, 0
+		ll, lr := len(left), len(right)
+		for li < ll && ri < lr {
 			if left[li] < right[ri] {
 				newArr[ai] = left[li]
 				li++
@@ -54,13 +53,13 @@ func MergeSort(a []int, b []int) []int {
 			}
 		}
 
-		if li == len(left) {
-			for ; ri < len(right); ri++ {
+		if li == ll {
+			for ; ri < lr; ri++ {
 				newArr[ai] = right[ri]
 				ai++
 			}
 		} else {
-			for ; li < len(left); li++ {
+			for ; li < ll; li++ {
 				newArr[ai] = left[li]
 				ai++
 			}
