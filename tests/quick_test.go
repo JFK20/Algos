@@ -9,7 +9,8 @@ import (
 	"testing"
 )
 
-func TestMerge(t *testing.T) {
+func TestQuick(t *testing.T) {
+
 	unsorted := make([]int, 973)
 
 	for i := range unsorted {
@@ -20,16 +21,16 @@ func TestMerge(t *testing.T) {
 		fmt.Printf("unsorted: %v\n", unsorted)
 	}
 
-	got := sorting.MergeSort(unsorted[:len(unsorted)/2], unsorted[len(unsorted)/2:])
-	if !slices.IsSorted(got) {
+	sorting.QuickSort(unsorted, 0, len(unsorted)-1)
+
+	if !slices.IsSorted(unsorted) {
 		t.Errorf("slice is not sorted correctly")
 	}
-	if constants.TestVerbose {
-		fmt.Printf("sorted: %v\n", got)
-	}
+
 }
 
-func TestMergeAsync(t *testing.T) {
+func TestQuickAsync(t *testing.T) {
+
 	unsorted := make([]int, 973)
 
 	for i := range unsorted {
@@ -40,8 +41,10 @@ func TestMergeAsync(t *testing.T) {
 		fmt.Printf("unsorted: %v\n", unsorted)
 	}
 
-	got := sorting.MergeSortAsync(unsorted[:len(unsorted)/2], unsorted[len(unsorted)/2:])
-	if !slices.IsSorted(got) {
+	sorting.QuickSortAsync(unsorted, 0, len(unsorted)-1)
+
+	if !slices.IsSorted(unsorted) {
 		t.Errorf("slice is not sorted correctly")
 	}
+
 }
