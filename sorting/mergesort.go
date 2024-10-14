@@ -102,21 +102,26 @@ func MergeSortAsync(a []int, b []int) []int {
 
 		var left []int
 		var right []int
+		//arbitrary number
+		if lengthA > 128 && lengthB > 128 {
+			wg := sync.WaitGroup{}
+			wg.Add(2)
 
-		wg := sync.WaitGroup{}
-		wg.Add(2)
+			go func() {
+				left = MergeSort(a[:leftMiddle], a[leftMiddle:])
+				wg.Done()
+			}()
 
-		go func() {
+			go func() {
+				right = MergeSort(b[:rightMiddle], b[rightMiddle:])
+				wg.Done()
+			}()
+
+			wg.Wait()
+		} else {
 			left = MergeSort(a[:leftMiddle], a[leftMiddle:])
-			wg.Done()
-		}()
-
-		go func() {
 			right = MergeSort(b[:rightMiddle], b[rightMiddle:])
-			wg.Done()
-		}()
-
-		wg.Wait()
+		}
 
 		return combine(left, right)
 	}
