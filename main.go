@@ -10,7 +10,3 @@ func main() {
 	test = sorting.MergeSort(test[:len(test)/2], test[len(test)/2:])
 	fmt.Println(test)
 }
-
-func init() {
-
-}

@@ -1,7 +1,7 @@
 package sorting
 
 import (
-	"Algos/Constants"
+	"Algos/constants"
 	"errors"
 	"fmt"
 )
@@ -12,7 +12,7 @@ func MergeSort(a []int, b []int) []int {
 		errors.New(("Arrays lengths are not equal"))
 	}
 	if lengthA == 1 {
-		if Constants.Verbose {
+		if constants.AlgoVerbose {
 			fmt.Println("start sorting")
 		}
 		newArr := make([]int, 2)
@@ -23,18 +23,18 @@ func MergeSort(a []int, b []int) []int {
 			newArr[0] = a[0]
 			newArr[1] = b[0]
 		}
-		if Constants.Verbose {
+		if constants.AlgoVerbose {
 			fmt.Println(newArr)
 		}
 		return newArr
 	} else {
-		if Constants.Verbose {
+		if constants.AlgoVerbose {
 			fmt.Println("start splitting")
 		}
 		newArr := make([]int, lengthA+lengthB)
 		left := MergeSort(a[:lengthA/2], a[lengthA/2:])
 		right := MergeSort(b[:lengthB/2], b[lengthB/2:])
-		if Constants.Verbose {
+		if constants.AlgoVerbose {
 			fmt.Println("start merging")
 			fmt.Println(left)
 			fmt.Println(right)
@@ -63,6 +63,9 @@ func MergeSort(a []int, b []int) []int {
 				newArr[ai] = left[li]
 				ai++
 			}
+		}
+		if constants.AlgoVerbose {
+			fmt.Println(newArr)
 		}
 
 		return newArr
