@@ -1,4 +1,4 @@
 package constants
 
-var TestVerbose = true
+var TestVerbose = false
 var AlgoVerbose = false
